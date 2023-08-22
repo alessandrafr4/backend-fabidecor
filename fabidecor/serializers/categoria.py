@@ -1,13 +1,14 @@
+
 from rest_framework.serializers import ModelSerializer
 
-from fabidecor.models import Categoria, Informacoes
+from fabidecor.models import  Categoria
 
 class CategoriaSerializer(ModelSerializer):
     class Meta:
         model = Categoria
         fields = "__all__"
 
-class InformacoesSerializer(ModelSerializer):
+class CategoriaSerializer(ModelSerializer):
     class Meta:
-        model = Informacoes
+        model = Categoria 
         fields = "__all__"
