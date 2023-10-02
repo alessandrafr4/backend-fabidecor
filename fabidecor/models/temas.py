@@ -1,17 +1,19 @@
 from django.db import models
-from .categoria import Categoria
+from fabidecor.models import Categoria
+from uploader.models import Image
 
 class Temas(models.Model):
-    titulo = models.CharField(max_length=255)
-    isbn = models.CharField(max_length=32, null=True, blank=True)
-    quantidade = models.IntegerField(default=0,  null=True, blank=True)
-    preco = models.DecimalField(max_digits=7, decimal_places=2, default=0, null=True, blank=True)
+    descricao = models.CharField(max_length=255)
+    imagens = models.ManyToManyField(
+        Image,
+        related_name="+",
+    )
     categoria = models.ForeignKey(
-        Categoria, on_delete=models.PROTECT, related_name="livros"
+        Categoria, on_delete=models.PROTECT, related_name="fabidecor"
     )
 
     def __str__(self):
-        return f"{self.titulo} ({self.quantidade})"
+        return f"{self.descricao} ({self.quantidade})"
 
     class Meta:
         verbose_name ="Tema"

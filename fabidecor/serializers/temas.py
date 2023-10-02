@@ -16,4 +16,4 @@ class TemasDetailSerializer(ModelSerializer):
 class TemasListSerializer(ModelSerializer):
     class Meta:
         model = Temas
-        fields = ["id","modelo"]
+        fields ="__all__"

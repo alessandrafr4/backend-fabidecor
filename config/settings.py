@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-x-#oon*oxbow!3zk-3f%*z_gz-*-topa52r%8tbt=*(d=g_3@o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +42,9 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     'rest_framework',
     'drf_spectacular',
+    "uploader",
     'fabidecor',
+    'usuario',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +95,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.pacorsheaders.middleware.CorsMiddleware",ssword_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -116,6 +119,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = "usuario.Usuario"
 
 
 # Static files (CSS, JavaScript, Images)
@@ -142,7 +147,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # }
 
-
 MEDIA_URL = "http://localhost:8000/media/"
 MEDIA_ENDPOINT = "/media/"
-FILE_UPLOAD_PERMISSIONS = 0o64
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+FILE_UPLOAD_PERMISSIONS = 0o640
